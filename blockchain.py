@@ -3,7 +3,7 @@ import json
 from time import time
 from uuid import uuid4
 
-from flash import Flask, jsonify, request
+from flask import Flask, jsonify, request
 
 class Blockchain (object):
   def __init__(self):
@@ -24,7 +24,7 @@ class Blockchain (object):
     block = {
       'index': len(self.chain) + 1,
       'timestamp': time(),
-      'transaction': self.current_transactions,
+      'transactions': self.current_transactions,
       'proof': proof,
       'previous_hash': previous_hash or self.hash(self.chain[-1])
     }
@@ -154,4 +154,4 @@ def full_chain():
   return jsonify(response), 200
 
 if __name__ == '__main__':
-  app.run(host="0.0.0.0", port=5000)
+  app.run(host="0.0.0.0", port=5001)
